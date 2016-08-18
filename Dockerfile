@@ -1,9 +1,12 @@
 FROM ubuntu:xenial
-MAINTAINER Marti Martinez 'martinezah@gmail.com'
-ENV stamp 20160818T000000Z
+MAINTAINER Marti Martinez "martinezah@gmail.com"
+ENV stamp 20160818T000001Z
+RUN apt-get update
+RUN apt-get install -y python default-jdk
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+ENV CLASSPATH=/tmp/venv/lib/python2.7/site-packages/cdrtools/tika-server-1.13.jar
 COPY venv /tmp/venv
 COPY app /app
-WORKDIR /app
-ENTRYPOINT ['/tmp/venv/bin/python']
-CMD ['run.py']
+ENTRYPOINT ["/tmp/venv/bin/python"]
+CMD ["/app/run.py"]
 EXPOSE 8080
