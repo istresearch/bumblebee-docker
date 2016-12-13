@@ -7,6 +7,6 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 ENV CLASSPATH=/tmp/venv/lib/python2.7/site-packages/cdrtools/tika-server-1.13.jar
 COPY venv /tmp/venv
 COPY app /app
-ENTRYPOINT ["/tmp/venv/bin/python"]
-CMD ["/app/run.py"]
+ENTRYPOINT ["/tmp/venv/bin/gunicorn"]
+CMD ["--workers", "4", "--bind" , "0.0.0.0:8080", "app.run"]
 EXPOSE 8080

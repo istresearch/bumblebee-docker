@@ -18,7 +18,7 @@ if [ ! -d "/tmp/venv" ]; then
 fi
 source /tmp/venv/bin/activate
 
-pip install bottle cython 
+pip install flask cython gunicorn
 
 cd pyjnius
 git pull
@@ -46,3 +46,4 @@ if [ -d "venv" ]; then
     rm -rf venv
 fi
 cp -pr /tmp/venv .
+

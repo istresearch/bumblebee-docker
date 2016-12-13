@@ -1,10 +1,11 @@
-from bottle import post, request, response, run
+from flask import Flask, Response, request
 from bumblebee import *
 
-@post('/transform')
+application = Flask(__name__)
+
+@application.route('/transform', methods=['POST'])
 def transform():
-    response.content_type = 'application/json'
-    return pipeline_to_cdr(request.body.read())    
+    return Response(pipeline_to_cdr(request.data), mimetype="application/json")
 
-run(host='0.0.0.0', port=8080, debug=True)
-
+if __name__ == "__main__":
+    application.run(host='0.0.0.0', port=8080)
