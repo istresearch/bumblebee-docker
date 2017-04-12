@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y git python-virtualenv python-dev libre2-dev build-essential default-jdk
+sudo apt-get update; sudo apt-get install -y git python-virtualenv python-dev python-pip libre2-dev build-essential default-jdk
 
 if [ ! -d "repos" ]; then
     mkdir repos
